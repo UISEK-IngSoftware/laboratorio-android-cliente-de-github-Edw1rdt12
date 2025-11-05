@@ -15,7 +15,7 @@
             android:id="@+id/repo_owner_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_launcher_foreground"
+            android:src="@drawable/baseline_add_24"
             android:layout_gravity="center"
             />
         <!--//LAYOUT DEL NOMBRE-->
