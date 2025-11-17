@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         fetchRepositories()
     }
 
-    // Inicializa el ReposAdapter con las acciones de clic.
+    // Inicializa el ReposAdapter con las acciones de clic
     private fun setupRecyclerView() {
         reposAdapter = ReposAdapter(
             onEditClick = { repo -> handleEditRepo(repo) },      // Acción para editar
