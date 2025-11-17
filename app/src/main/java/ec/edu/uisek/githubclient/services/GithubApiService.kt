@@ -1,7 +1,7 @@
 package ec.edu.uisek.githubclient.services
 
+import ec.edu.uisek.githubclient.models.NewRepo
 import ec.edu.uisek.githubclient.models.Repo
-import ec.edu.uisek.githubclient.models.RepoRequest // Usaremos esto para POST/PATCH
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -22,8 +22,8 @@ interface GithubApiService {
 
     // 2. CREAR Repositorio (POST)
     @POST("user/repos")
-    fun addRepo(
-        @Body repoRequest: RepoRequest
+    fun createRepo(
+        @Body repo: NewRepo
     ) : Call<Repo>
 
     // 3. ACTUALIZAR Repositorio (PATCH)
@@ -32,7 +32,7 @@ interface GithubApiService {
     fun updateRepo(
         @Path("owner") owner: String, // El nombre de usuario (dueño del repo)
         @Path("repo") repoName: String, // El nombre actual del repositorio
-        @Body repoRequest: RepoRequest // El body con los nuevos datos (nombre, descripción, etc.)
+        @Body repo: NewRepo // El body con los nuevos datos (nombre, descripción, etc.)
     ): Call<Repo>
 
     // 4. ELIMINAR Repositorio (DELETE)
