@@ -9,21 +9,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
-        >
-        <ImageView
-            android:id="@+id/repo_owner_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/baseline_add_24"
-            android:layout_gravity="center"
-            />
-        <!--//LAYOUT DEL NOMBRE-->
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/repo_owner_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/baseline_add_24" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <!-- Botón para iniciar la edición del repositorio. -->
+                <ImageButton
+                    android:id="@+id/edit_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@android:drawable/ic_menu_edit" />
+
+                <!-- Botón para iniciar la eliminación del repositorio. -->
+                <ImageButton
+                    android:id="@+id/delete_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@android:drawable/ic_menu_delete" />
+            </LinearLayout>
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            >
+            android:layout_marginStart="16dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -33,18 +64,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/repo_name"
                     android:padding="8dp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/repo_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/test_text"
-                    android:padding="8dp"
-                    />
+                    android:padding="8dp" />
             </LinearLayout>
 
-            <!--//LAYOUT DE LA DESCRIPCION-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,19 +82,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/repo_description"
                     android:padding="8dp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/repo_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/test_text"
-                    android:padding="8dp"
-                    />
-
+                    android:padding="8dp" />
             </LinearLayout>
 
-            <!--//LAYOUT DEL LENGUAJE-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,34 +100,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/repo_lang"
                     android:padding="8dp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/repo_lang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/test_lang"
-                    android:padding="8dp"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/edit_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@android:drawable/ic_menu_edit" />
-
-                <ImageButton
-                    android:id="@+id/delete_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@android:drawable/ic_menu_delete" />
+                    android:text="@string/test_text"
+                    android:padding="8dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
