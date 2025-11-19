@@ -13,7 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// Actividad principal: muestra la lista de repositorios del usuario.
+// Actividad principal: muestra la lista de repositorios del usuario. parcial 1
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var reposAdapter: ReposAdapter
@@ -23,30 +23,30 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupRecyclerView() // Configura el RecyclerView y su adaptador.
+        setupRecyclerView() // Configura el RecyclerView y su adaptador. parcial 1
 
-        // Lanza el formulario para crear un nuevo repositorio.
+        // Lanza el formulario para crear un nuevo repositorio. parcial 1
         binding.newRepoFab.setOnClickListener {
             displayNewRepoForm()
         }
     }
 
-    // Refresca la lista de repositorios cuando la actividad vuelve a estar visible.
+    // Refresca la lista de repositorios cuando la actividad vuelve a estar visible. parcial 1
     override fun onResume() {
         super.onResume()
         fetchRepositories()
     }
 
-    // Inicializa el ReposAdapter con las acciones de clic
+    // Inicializa el ReposAdapter con las acciones de clic. parcial 1
     private fun setupRecyclerView() {
         reposAdapter = ReposAdapter(
-            onEditClick = { repo -> handleEditRepo(repo) },      // Acción para editar
-            onDeleteClick = { repo -> handleDeleteRepo(repo) }    // Acción para eliminar
+            onEditClick = { repo -> handleEditRepo(repo) },      // Acción para editar. parcial 1
+            onDeleteClick = { repo -> handleDeleteRepo(repo) }    // Acción para eliminar. parcial 1
         )
         binding.reposRecyclerView.adapter = reposAdapter
     }
 
-    // Obtiene los repositorios del usuario desde la API de GitHub.
+    // Obtiene los repositorios del usuario desde la API de GitHub. parcial 1
     private fun fetchRepositories() {
         val apiService: GithubApiService = RetrofitClient.gitHubApiService
         val call = apiService.getRepos()
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val repos = response.body()
                     if (repos != null && repos.isNotEmpty()) {
-                        reposAdapter.updateRepositories(repos) // Actualiza el adaptador.
+                        reposAdapter.updateRepositories(repos) // Actualiza el adaptador. parcial 1
                     } else {
                         showMessage("No se encontraron repositorios")
                     }
@@ -77,19 +77,19 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    // Muestra un mensaje Toast.
+    // Muestra un mensaje Toast. parcial 1
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
-    // Inicia la actividad del formulario para un nuevo repositorio.
+    // Inicia la actividad del formulario para un nuevo repositorio. parcial 1
     private fun displayNewRepoForm() {
         Intent(this, RepoForm::class.java).apply {
             startActivity(this)
         }
     }
 
-    // Inicia el formulario para editar un repositorio existente.
+    // Inicia el formulario para editar un repositorio existente. parcial 1
     private fun handleEditRepo(repo: Repo) {
         val intent = Intent(this, RepoForm::class.java).apply {
             putExtra("REPO_OWNER", repo.owner.login)
@@ -99,19 +99,19 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    // Muestra un diálogo de confirmación para eliminar un repositorio.
+    // Muestra un diálogo de confirmación para eliminar un repositorio. parcial 1
     private fun handleDeleteRepo(repo: Repo) {
         AlertDialog.Builder(this)
             .setTitle("Confirmar Eliminación")
             .setMessage("¿Estás seguro de que quieres eliminar el repositorio '${repo.name}'?")
             .setPositiveButton("Eliminar") { _, _ ->
-                deleteRepository(repo) // Llama a la función de eliminación.
+                deleteRepository(repo) // Llama a la función de eliminación. parcial 1
             }
             .setNegativeButton("Cancelar", null)
             .show()
     }
 
-    // Llama a la API para eliminar un repositorio.
+    // Llama a la API para eliminar un repositorio. parcial 1
     private fun deleteRepository(repo: Repo) {
         val apiService: GithubApiService = RetrofitClient.gitHubApiService
         val call = apiService.deleteRepo(repo.owner.login, repo.name)
@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
                     showMessage("Repositorio eliminado exitosamente")
-                    fetchRepositories() // Refresca la lista.
+                    fetchRepositories() // Refresca la lista. parcial 1
                 } else {
                     showMessage("Error al eliminar el repositorio: ${response.code()}")
                 }
