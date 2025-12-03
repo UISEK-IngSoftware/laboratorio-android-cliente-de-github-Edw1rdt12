@@ -10,6 +10,6 @@
     <string name="user">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="login">Ingresar</string>
-
+    <string name="logout">Cerrar Sesión</string>
 
 </resources>

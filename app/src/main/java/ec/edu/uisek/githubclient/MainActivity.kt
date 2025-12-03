@@ -9,6 +9,7 @@ import ec.edu.uisek.githubclient.databinding.ActivityMainBinding
 import ec.edu.uisek.githubclient.models.Repo
 import ec.edu.uisek.githubclient.services.GithubApiService
 import ec.edu.uisek.githubclient.services.RetrofitClient
+import ec.edu.uisek.githubclient.services.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +27,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.newRepoFab.setOnClickListener {
             displayNewRepoForm()
+        }
+
+        binding.logoutButton.setOnClickListener {
+            logout()
         }
     }
 
@@ -113,5 +118,13 @@ class MainActivity : AppCompatActivity() {
                 showMessage("Fallo en la conexión al eliminar")
             }
         })
+    }
+
+    private fun logout() {
+        val sessionManager = SessionManager(this)
+        sessionManager.clearCredentials()
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
     }
 }

@@ -40,4 +40,13 @@ class SessionManager (context: Context) {
             null
         }
     }
+
+    // /// ESTA PARTE ES NUEVA PARA EL LOG OUT ///
+    // /// Función que borra las credenciales (usuario y contraseña) de las preferencias encriptadas ///
+    fun clearCredentials() {
+        sharedPreferences.edit()
+            .remove(USERNAME) // Borra el usuario
+            .remove(PASSWORD) // Borra la contraseña
+            .apply() // Aplica los cambios
+    }
 }
